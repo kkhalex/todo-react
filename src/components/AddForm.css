@@ -5,11 +5,16 @@
   gap: 10px;
   height: 40px;
   border: 1px solid gray;
+  background-color: #202020;
   padding: 0.5rem;
   border-radius: 5px;
 }
 
 .add-form input {
-  border-radius: 5px;
+  border-radius: 7px;
   padding-left: 15px;
+  height: 35px;
+  font-size: 15px;
+  background-color: #e0e1dd;
+  color: black;
 }

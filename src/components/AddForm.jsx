@@ -17,7 +17,19 @@ const AddForm = ({ addTask }) => {
         value={testo}
         onChange={(e) => setTesto(e.target.value)}
       />
-      <button onClick={handleSubmit}>ADD</button>
+      <button
+        onClick={handleSubmit}
+        style={{
+          backgroundColor: 'green',
+          color: 'black',
+          fontWeight: '600',
+          borderRadius: '10px',
+          fontSize: '16px',
+          cursor: 'pointer',
+        }}
+      >
+        ADD
+      </button>
     </div>
   );
 };
