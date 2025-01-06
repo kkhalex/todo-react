@@ -1,21 +1,27 @@
 import React from 'react';
 import './RenderTask.css';
-const RenderTask = ({ task, deleteTask }) => {
+const RenderTask = ({ task, deleteTask, toggleCompleted }) => {
   const handleDelete = () => {
     deleteTask(task);
+  };
+
+  const handleIsCompleted = () => {
+    toggleCompleted(task.id);
   };
   return (
     <div className='render-task'>
       <div className='checkbox-wrapper-28'>
         <input
-          id='tmp-28'
-          type='checkbox'
+          id={`checkbox-${task.id}`}
+          type={`checkbox`}
           className='promoted-input-checkbox'
+          defaultChecked={task.isCompleted}
+          onClick={handleIsCompleted}
         />
         <svg>
           <use xlinkHref='#checkmark-28' />
         </svg>
-        <label htmlFor='tmp-28'></label>
+        <label htmlFor={`checkbox-${task.id}`}></label>
         <svg xmlns='http://www.w3.org/2000/svg' style={{ display: 'none' }}>
           <symbol id='checkmark-28' viewBox='0 0 24 24'>
             <path
@@ -27,7 +33,7 @@ const RenderTask = ({ task, deleteTask }) => {
           </symbol>
         </svg>
       </div>
-      <h3>{task}</h3>
+      <h3>{task.task}</h3>
       <button onClick={handleDelete}>X</button>
     </div>
   );

@@ -4,8 +4,10 @@ const AddForm = ({ addTask }) => {
   const [testo, setTesto] = useState('');
 
   const handleSubmit = () => {
-    addTask(testo);
-    setTesto('');
+    if (testo !== '') {
+      addTask(testo);
+      setTesto('');
+    }
   };
   return (
     <div className='add-form'>
