@@ -1,0 +1,7 @@
+.contenitore-statistiche {
+  border: 1px solid gray;
+  border-radius: 10px;
+  padding: 10px;
+  background-color: #353535;
+  transition: all 1s ease;
+}

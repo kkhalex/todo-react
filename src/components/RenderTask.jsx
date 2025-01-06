@@ -1,32 +1,43 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './RenderTask.css';
+import { useSortable } from '@dnd-kit/sortable';
+import { CSS } from '@dnd-kit/utilities';
 const RenderTask = ({
   task,
   deleteTask,
   toggleCompleted,
   toggleModify,
   moveTask,
+  id,
 }) => {
-  const handleDelete = () => {
-    deleteTask(task);
+  const [drag, setDrag] = useState(false);
+  let dragTimer = null;
+  const { attributes, listeners, setNodeRef, transition, transform } =
+    useSortable({ id, disabled: !drag });
+  const style = {
+    transition,
+    transform: CSS.Transform.toString(transform),
+    opacity: drag ? '0.5' : '1',
   };
-
-  const handleIsCompleted = () => {
-    toggleCompleted(task.id);
+  const handleMouseEnter = () => {
+    dragTimer = setTimeout(() => {
+      setDrag(true);
+    }, 1000);
   };
-
-  const handleModify = () => {
-    toggleModify(task.id);
-  };
-
-  const handleSwitchUp = () => {
-    moveTask(task.id, 'up');
-  };
-  const handleSwitchDown = () => {
-    moveTask(task.id, 'down');
+  const handleMouseLeave = () => {
+    clearTimeout(dragTimer);
+    setDrag(false);
   };
   return (
-    <div className='render-task'>
+    <div
+      className='render-task'
+      ref={setNodeRef}
+      {...attributes}
+      {...listeners}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+      style={style}
+    >
       <div className='temp'>
         <div className='checkbox-wrapper-28'>
           <input
@@ -34,7 +45,7 @@ const RenderTask = ({
             type={`checkbox`}
             className='promoted-input-checkbox'
             defaultChecked={task.isCompleted}
-            onClick={handleIsCompleted}
+            onClick={() => toggleCompleted(task.id)}
           />
           <svg>
             <use xlinkHref='#checkmark-28' />
@@ -52,13 +63,22 @@ const RenderTask = ({
           </svg>
         </div>
         <h3>{task.task}</h3>
-        <button style={{ fontSize: '1rem' }} onClick={handleModify}>
+        <button
+          style={{ fontSize: '1rem' }}
+          onClick={() => toggleModify(task.id)}
+        >
           <i className='fa-solid fa-pencil' style={{ color: 'black' }}></i>
         </button>
-        <button onClick={handleSwitchUp} style={{ fontSize: '14px' }}>
+        <button
+          onClick={() => moveTask(task.id, 'up')}
+          style={{ fontSize: '14px' }}
+        >
           👆
         </button>
-        <button onClick={handleSwitchDown} style={{ fontSize: '14px' }}>
+        <button
+          onClick={() => moveTask(task.id, 'down')}
+          style={{ fontSize: '14px' }}
+        >
           👇
         </button>
         <button
@@ -68,7 +88,7 @@ const RenderTask = ({
             fontWeight: '600',
             fontSize: '1rem',
           }}
-          onClick={handleDelete}
+          onClick={() => deleteTask(task.id)}
         >
           <i className='fa-regular fa-trash-can'></i>
         </button>

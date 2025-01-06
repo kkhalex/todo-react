@@ -20,7 +20,7 @@
   border: 1px solid gray;
   background-color: #353535;
   border-radius: 20px;
-  margin: 1rem auto;
+  margin: 1rem 1.5rem;
   overflow-y: scroll;
   scrollbar-width: none;
 }
