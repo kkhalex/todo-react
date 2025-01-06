@@ -16,7 +16,6 @@ function App() {
       ...listaTask,
       { task: task, id: uuidv4(), isCompleted: false, isEditing: false },
     ]);
-    console.log(listaTask);
   };
 
   const deleteTask = (taskFiltrata) => {
@@ -39,7 +38,6 @@ function App() {
   };
 
   const updateTask = (taskID, nuovaTask) => {
-    console.log(taskID, nuovaTask);
     setListaTask(
       listaTask.map((task) =>
         task.id === taskID

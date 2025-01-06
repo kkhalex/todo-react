@@ -1,4 +1,5 @@
-.add-form {
+.add-form,
+.modify-task {
   width: 90%;
   display: grid;
   grid-template-columns: 1fr 50px;
@@ -17,4 +18,7 @@
   font-size: 15px;
   background-color: #e0e1dd;
   color: black;
+}
+
+.modify-task {
 }

@@ -53,7 +53,7 @@ const RenderTask = ({
         </div>
         <h3>{task.task}</h3>
         <button style={{ fontSize: '1rem' }} onClick={handleModify}>
-          M
+          <i className='fa-solid fa-pencil' style={{ color: 'black' }}></i>
         </button>
         <button onClick={handleSwitchUp} style={{ fontSize: '14px' }}>
           👆
@@ -63,14 +63,14 @@ const RenderTask = ({
         </button>
         <button
           style={{
-            backgroundColor: 'red',
+            backgroundColor: '#c93e48',
             color: 'black',
             fontWeight: '600',
             fontSize: '1rem',
           }}
           onClick={handleDelete}
         >
-          X
+          <i className='fa-regular fa-trash-can'></i>
         </button>
       </div>
       {task.isCompleted && <div className='task-completata'></div>}
